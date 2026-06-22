@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/splash_background"
+        android:drawable="@color/darkSplashBackground"
+        android:gravity="fill">
+    </item>
+    <item android:gravity="center" android:top="100dp" android:bottom="100dp" android:left="100dp" android:right="100dp" android:drawable="@drawable/ambi_logo">
+    </item>
+</layer-list>

@@ -1,0 +1,68 @@
+name: Linter
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    types: [synchronize, opened, reopened, ready_for_review]
+
+jobs:
+  run-linter:
+    name: Run linter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repo
+        uses: actions/checkout@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 15
+          check-latest: true
+
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.6'
+
+      - name: Install Bundler
+        run: gem install bundler:2.2.5
+
+      - name: Install Bundle dependencies
+        run: bundle install
+
+      - name: Install Node dependencies
+        run: NOYARNPOSTINSTALL=1 yarn install
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          git_name: Linter
+          git_email: ci@ambi.work
+          eslint: true
+          
+      - name: Run Hue Action
+        uses: manekinekko/hue-action@v1.0
+        if: ${{ success() && github.actor == 'ShotSkydiver' }}
+        with:
+          hueWebhook: ${{ secrets.HUEACTION_WEBHOOK }}
+          hueLightId: "4"
+          hueStatus: "#22a671"
+          
+      - name: Run Hue Action
+        uses: manekinekko/hue-action@v1.0
+        if: ${{ failure() && github.actor == 'ShotSkydiver' }}
+        with:
+          hueWebhook: ${{ secrets.HUEACTION_WEBHOOK }}
+          hueLightId: "4"
+          hueStatus: "#9B344D"
+          
+      - name: LIFX Build Light
+        uses: LIFX/buildlight-action@master
+        if: github.actor == 'ShotSkydiver'
+        with:
+          lifx-token: ${{ secrets.LIFX_TOKEN }}
+          selector: 'location:Kitchen'
+          status: ${{ job.status }}

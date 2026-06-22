@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<resources>
+    <string name="default_notification_channel_id">@string/chat_message_notification_channel</string>
+    <string name="chat_channel_notification_group">ambi-chat-channel-group</string>
+    <string name="chat_message_notification_channel">ambi-received-chat-message</string>
+    <string name="asset_statements" translatable="false">[{ \"include\": \"https://ambi.school/.well-known/assetlinks.json\" }]</string>
+</resources>

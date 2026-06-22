@@ -1,0 +1,251 @@
+format_version: 1.3.1
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: ""
+app:
+  envs:
+  - FASTLANE_XCODE_LIST_TIMEOUT: "0"
+    opts:
+      is_expand: true
+  - PRODUCE_SKIP_ITC: "true"
+    opts:
+      is_expand: true
+  - PRODUCE_SKIP_DEVCENTER: "true"
+    opts:
+      is_expand: true
+  - REACT_NATIVE_DIRECTORY: ./.
+    opts:
+      is_expand: true
+workflows:
+  Bitrise-Steps-Playground:
+    steps:
+    - cocoapods-install@2: {}
+  Deploy:
+    steps:
+    - build-router-start@0.14:
+        inputs:
+        - access_token: $BITRISE_TOKEN
+        - workflows: |-
+            Deploy-iOS
+            Deploy-Android
+        - wait_for_builds: "false"
+  Deploy-Android:
+    before_run:
+    - Setup
+    steps:
+    - decrypt-file@0.9.0:
+        title: Decrypt secrets file
+        inputs:
+        - output_file_path: production_app_secrets_with_paths.tar.gz
+        - decrypt_passphrase: $PRODUCTION_SECRETS_PASSPHRASE
+        - encrypted_file_path: production_app_secrets_with_paths.tar.gz.gpg
+    - script@1.1:
+        title: Untar decrypted secrets
+        inputs:
+        - content: |-
+            tar -xzvf production_app_secrets_with_paths.tar.gz
+
+            rm production_app_secrets_with_paths.tar.gz
+    - script@1:
+        title: Accept android build-tools license
+        inputs:
+        - content: |-
+            #!/bin/bash
+            yes |sdkmanager --install "build-tools;29.0.3"
+            # TEMP solution to accept latest build tools licenses
+            # see https://discuss.bitrise.io/t/install-missing-android-tools-failing-on-license/7749/5
+    - script@1.1:
+        title: Deploy Android App to Internal track
+        inputs:
+        - content: |-
+            #!/bin/bash
+            bundle exec fastlane android deploy --env production
+        - working_dir: $REACT_NATIVE_DIRECTORY
+    - slack@3.1:
+        title: Send Slack Message
+        inputs:
+        - channel: '#mobile-builds'
+        - emoji: ':ambi:'
+        - icon_url: ""
+        - pretext: ${BITRISE_TRIGGERED_WORKFLOW_TITLE} Succeeded
+        - from_username: Bitrise Deploy
+        - from_username_on_error: Bitrise Deploy
+        - icon_url_on_error: ""
+        - pretext_on_error: ${BITRISE_TRIGGERED_WORKFLOW_TITLE} Failed
+        - fields: |-
+            Branch|${BITRISE_GIT_BRANCH}
+            Build Number|${BITRISE_BUILD_NUMBER}
+        - buttons: |-
+            View App|${BITRISE_APP_URL}
+            View Build|${BITRISE_BUILD_URL}
+        - webhook_url: $SLACK_BITRISE_WEBHOOK
+    - lifx-notifier@1.1:
+        inputs:
+        - bulb_label: Kitchen
+        - effect: pulse
+        - selector_type: group
+        - auth_token: cce3649fcd3b288f82038430b8785b14e732eb24fce1c32b5da3b5c67d8ddc6c
+  Deploy-iOS:
+    before_run:
+    - Setup
+    steps:
+    - fastlane@3.2:
+        title: Fastlane Set Build Numbers - iOS
+        inputs:
+        - lane: set_build_numbers_to_current_timestamp --env production
+        - verbose_log: "yes"
+    - fastlane@3.2:
+        title: Fastlane Deploy - iOS
+        inputs:
+        - lane: ios deploy --env production
+        - verbose_log: "yes"
+    - git-tag-project-version-and-build-number@1:
+        inputs:
+        - bitrise_tag_info_plist_path: $BITRISE_SOURCE_DIR/ios/AmbiNext/Info.plist
+        - use_lightweight_tag: "yes"
+        - bitrise_tag_format: _VERSION_(_BUILD_)
+        - bitrise_tag_xcodeproj_path: $BITRISE_SOURCE_DIR/ios/AmbiNext.xcodeproj
+    - slack@3.1:
+        inputs:
+        - channel: '#mobile-builds'
+        - emoji: ':ambi:'
+        - icon_url: ""
+        - pretext: ${BITRISE_TRIGGERED_WORKFLOW_TITLE} Succeeded
+        - from_username: Bitrise Deploy
+        - from_username_on_error: Bitrise Deploy
+        - icon_url_on_error: ""
+        - pretext_on_error: ${BITRISE_TRIGGERED_WORKFLOW_TITLE} Failed
+        - fields: |-
+            Branch|${BITRISE_GIT_BRANCH}
+            Build Number|${BITRISE_BUILD_NUMBER}
+        - buttons: |-
+            View App|${BITRISE_APP_URL}
+            View Build|${BITRISE_BUILD_URL}
+        - webhook_url: $SLACK_BITRISE_WEBHOOK
+    - lifx-notifier@1.1:
+        inputs:
+        - bulb_label: DISABLED_TEMPORARILY
+        - effect: pulse
+        - selector_type: group
+        - auth_token: cce3649fcd3b288f82038430b8785b14e732eb24fce1c32b5da3b5c67d8ddc6c
+  Setup:
+    steps:
+    - script@1.1:
+        title: Set Gem cache path env var
+        inputs:
+        - content: |-
+            #!/bin/bash
+            pwd
+            set -ex
+            RBENV_DIR="`cd $(rbenv which ruby)/../..;pwd`"
+            echo "Gem cache directory: $RBENV_DIR"
+            envman add --key GEM_CACHE_PATH --value $RBENV_DIR
+    - script@1.1:
+        title: Create npmrc file for Ambi shared-js private package
+        inputs:
+        - content: |
+            #!/bin/bash -ex
+            echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+    - bitrise-step-install-bundler@1.1.2: {}
+    - bundler@0.0.4: {}
+    - script@1:
+        title: Update Homebrew & Unlink Node@12
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            set -ex
+
+            brew update
+            brew unlink node@12
+            brew uninstall --verbose --formula node@12 yarn
+            brew cleanup -s
+    - nvm@1.3:
+        inputs:
+        - node_version: 16.1.0
+        - nvm_version: 0.38.0
+    - script@1:
+        title: Check node version
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -ex
+
+            source $HOME/.profile
+
+            echo "nvm : $(nvm current)"
+            echo "node path: $(which node)"
+            echo "npm version: $(npm -v)"
+
+            nvm install-latest-npm
+            npm install -g yarn
+            # exit 1
+    - script@1.1:
+        title: Remove lockfiles & purge all caches
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -ex
+
+            echo "Cleaning all the things"
+            rm -Rf node_modules/
+            rm -rf ./yarn.lock
+            rm -Rf ~/Library/Caches/Yarn/v6/*
+            npm cache clean --force
+            yarn cache clean
+
+            cd ios
+            rm -Rf Pods/
+            rm -rf Podfile.lock
+            #rm -Rf build
+            bundle exec pod cache clean --all
+
+            #cd ../android
+            #rm -Rf build
+            #cd ..
+            rm -Rf ~/Library/Developer/Xcode/DerivedData
+    - yarn:
+        title: Yarn install
+        inputs:
+        - workdir: $BITRISE_SOURCE_DIR/$REACT_NATIVE_DIRECTORY
+        - command: install
+        - cache_local_deps: "yes"
+        - verbose_log: "yes"
+        - args: --network-concurrency 1 --network-timeout 600000
+    - script@1:
+        title: Pod install & update repo
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -ex
+
+            cd ios
+            bundle exec pod install --repo-update
+    - yarn:
+        title: Yarn eslint
+        inputs:
+        - workdir: $BITRISE_SOURCE_DIR/$REACT_NATIVE_DIRECTORY
+        - command: lint
+        - args: ""
+    - slack@3.1:
+        inputs:
+        - channel: '#mobile-builds'
+        - emoji: ':ambi:'
+        - icon_url: ""
+        - icon_url_on_error: ""
+        - color: '#3bc38c'
+        - pretext: ${BITRISE_TRIGGERED_WORKFLOW_TITLE} Finished
+        - title_link: https://github.com/ambi-mobile-next/${BITRISE_GIT_BRANCH}
+        - color_on_error: '#f23d4f'
+        - pretext_on_error: ${BITRISE_TRIGGERED_WORKFLOW_TITLE} Failed
+        - fields: |-
+            Branch|${BITRISE_GIT_BRANCH}
+            Build Number|${BITRISE_BUILD_NUMBER}
+        - buttons: |-
+            View App|${BITRISE_APP_URL}
+            View Build|${BITRISE_BUILD_URL}
+        - webhook_url: $SLACK_BITRISE_WEBHOOK
+    - lifx-notifier@1:
+        inputs:
+        - bulb_label: Kitchen
+        - effect: breathe
+        - selector_type: group
+        - auth_token: cce3649fcd3b288f82038430b8785b14e732eb24fce1c32b5da3b5c67d8ddc6c

@@ -1,0 +1,17 @@
+<resources>
+    <style name="Theme.AmbiNext" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/secondaryColor</item>
+        <item name="android:navigationBarColor">@color/lightElementBG</item>
+<!--        <item name="android:statusBarColor">@color/lightElementBG</item>-->
+<!--        <item name="android:windowLightNavigationBar">false</item>-->
+<!--        <item name="android:windowLightStatusBar">false</item>-->
+<!--        <item name="android:navigationBarColor">@android:color/transparent</item>-->
+<!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
+    </style>
+    <style name="Theme.AmbiNext.Splash" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:background">@drawable/splash_screen_light</item>
+    </style>
+</resources>

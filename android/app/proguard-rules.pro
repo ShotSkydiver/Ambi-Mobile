@@ -1,0 +1,11 @@
+-keepattributes *Annotation*
+-keepattributes SourceFile,LineNumberTable
+-keep public class * extends java.lang.Exception
+-keep class io.invertase.firebase.** { *; }
+-dontwarn io.invertase.firebase.*
+-keep class com.crashlytics.** { *; }
+-keep public class com.horcrux.svg.** {*;}
+-dontwarn com.crashlytics.**
+-keep class com.facebook.jni.** { *; }
+-keep class com.facebook.hermes.unicode.** { *; }
+-keep class com.facebook.jni.** { *; }

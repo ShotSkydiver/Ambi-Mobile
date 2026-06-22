@@ -1,0 +1,47 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true,
+    "es6": true,
+    "node": true,
+    "react-native/react-native": true
+  },
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb",
+    "plugin:react-native/all",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["prettier", "react-hooks", "react", "react-native"],
+  "rules": {
+    "prettier/prettier": ["error"],
+    "no-underscore-dangle": [
+      2,
+      {
+        "allowAfterThis": true
+      }
+    ],
+    "no-bitwise": ["error", { "allow": ["~"] }],
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "react/jsx-props-no-spreading": ["warn", { "custom": "ignore" }],
+    "jsx-a11y/accessible-emoji": "off",
+    "global-require": "off",
+    "class-methods-use-this": "off",
+    "no-useless-catch": "off",
+    "no-unused-expressions": "off",
+    "no-case-declarations": "off",
+    "no-shadow": "off",
+    "no-else-return": "off",
+    "no-plusplus": "off",
+    "no-nested-ternary": "off",
+    "import/no-cycle": "off",
+    "import/prefer-default-export": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react/jsx-filename-extension": "off",
+    "react/prop-types": "off",
+    "react/destructuring-assignment": "off",
+    "react-native/no-inline-styles": "off",
+    "react-native/no-color-literals": "off",
+    "react-native/no-raw-text": "off"
+  }
+}

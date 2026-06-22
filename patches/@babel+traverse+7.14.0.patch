@@ -1,0 +1,13 @@
+diff --git a/node_modules/@babel/traverse/lib/path/evaluation.js b/node_modules/@babel/traverse/lib/path/evaluation.js
+index 1bea680..95f6706 100644
+--- a/node_modules/@babel/traverse/lib/path/evaluation.js
++++ b/node_modules/@babel/traverse/lib/path/evaluation.js
+@@ -125,7 +125,7 @@ function _evaluate(path, state) {
+       return deopt(binding.path, state);
+     }
+
+-    if (binding && path.node.start < binding.path.node.end) {
++    if (binding && binding.path && binding.path.node && path.node.start < binding.path.node.end) {
+       return deopt(binding.path, state);
+     }
+

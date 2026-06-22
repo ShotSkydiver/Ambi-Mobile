@@ -1,0 +1,7 @@
+{
+  "react-native": {
+    "messaging_android_headless_task_timeout": 60000,
+    "messaging_android_notification_channel_id": "ambi-received-chat-message",
+    "messaging_ios_auto_register_for_remote_messages": true
+  }
+}

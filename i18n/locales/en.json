@@ -1,0 +1,440 @@
+{
+  "a_message_decece34": {
+    "message": "a message"
+  },
+  "a_profile_picture_is_required_b42737": {
+    "message": "a profile picture is required"
+  },
+  "about_70c18bba": {
+    "message": "About"
+  },
+  "about_class_930ec5a1": {
+    "message": "About Class"
+  },
+  "about_group_138598fb": {
+    "message": "About Group"
+  },
+  "add_members_2c6ceb90": {
+    "message": "Add members"
+  },
+  "add_members_to_invite_1f411b6b": {
+    "message": "Add members to invite"
+  },
+  "add_users_70cd50b5": {
+    "message": "Add users"
+  },
+  "admins_3e1dce15": {
+    "message": "Admins"
+  },
+  "announcement_fb4cb645": {
+    "message": "Announcement"
+  },
+  "anyone_on_the_network_can_discover_and_request_to__752450fe": {
+    "message": "Anyone on the network can discover and request to join, but must be approved by a group admin to join and view this groups posts and content."
+  },
+  "anyone_on_the_network_can_discover_join_and_see_po_e9cd5b7c": {
+    "message": "Anyone on the network can discover, join, and see posts and content inside this group."
+  },
+  "assignments_1e02582c": {
+    "message": "Assignments"
+  },
+  "back_2900f52a": {
+    "message": "Back"
+  },
+  "back_89325a14": {
+    "message": "back"
+  },
+  "cancel_caeb1e68": {
+    "message": "Cancel"
+  },
+  "cancel_cd471b5e": {
+    "message": "cancel"
+  },
+  "change_banner_65087997": {
+    "message": "change banner"
+  },
+  "chats_e85db156": {
+    "message": "Chats"
+  },
+  "class_details_a6641101": {
+    "message": "Class Details"
+  },
+  "classes_e8686e27": {
+    "message": "Classes"
+  },
+  "comment_7ef1428e": {
+    "message": "Comment"
+  },
+  "comments_e07bcbe3": {
+    "message": "Comments"
+  },
+  "confirm_6556b3a6": {
+    "message": "Confirm"
+  },
+  "contact_support_8bd36fbf": {
+    "message": "contact support"
+  },
+  "cover_photo_19a9b568": {
+    "message": "Cover photo"
+  },
+  "create_132b3be1": {
+    "message": "Create"
+  },
+  "create_a_group_6f8f503b": {
+    "message": "Create a Group"
+  },
+  "creating_your_group_now_33e6df3b": {
+    "message": "Creating your group now..."
+  },
+  "dateformat_625de998": {
+    "message": "{ dateFormat }"
+  },
+  "delete_a143a2ab": {
+    "message": "delete"
+  },
+  "delete_group_5f337510": {
+    "message": "delete group"
+  },
+  "delete_post_4a81b9b8": {
+    "message": "Delete post"
+  },
+  "delivered_message_e1f3caf7": {
+    "message": "Delivered Message"
+  },
+  "description_436c48d7": {
+    "message": "Description"
+  },
+  "description_c5f0c700": {
+    "message": "description"
+  },
+  "details_98a31b68": {
+    "message": "Details"
+  },
+  "discover_56d42b60": {
+    "message": "Discover"
+  },
+  "discover_groups_40e184db": {
+    "message": "Discover Groups"
+  },
+  "downloading_98dd77d2": {
+    "message": "downloading"
+  },
+  "email_address_not_recognized_f61448a0": {
+    "message": "* email address not recognized"
+  },
+  "email_email_6aed06fa": {
+    "message": "Email: { email }"
+  },
+  "empty_as_heaven_dfea5ff7": {
+    "message": "Empty as Heaven..!"
+  },
+  "enter_a_description_dfcede47": {
+    "message": "Enter a description…"
+  },
+  "expected_a_finite_number_got_c79c4c11": {
+    "message": "Expected a finite number, got"
+  },
+  "feed_678e70b6": {
+    "message": "Feed"
+  },
+  "file_6863ad33": {
+    "message": "file"
+  },
+  "files_2c1c604": {
+    "message": "files"
+  },
+  "files_c300e900": {
+    "message": "Files"
+  },
+  "followers_a781bd2e": {
+    "message": "Followers"
+  },
+  "following_5236cd6a": {
+    "message": "Following"
+  },
+  "found_547a5d2b": {
+    "message": "found"
+  },
+  "get_started_with_ambi_eff61c84": {
+    "message": "Get started with ambi"
+  },
+  "group_details_e51122f1": {
+    "message": "Group Details"
+  },
+  "groups_6c90e26a": {
+    "message": "Groups"
+  },
+  "hoursdiff_hrstring_ago_46027dbc": {
+    "message": "{ hoursDiff } { hrString } ago"
+  },
+  "identified_with_clientname_9c81616e": {
+    "message": "Identified with { clientName }"
+  },
+  "image_or_video_2e996c16": {
+    "message": "Image or Video"
+  },
+  "invite_members_57fa16e": {
+    "message": "Invite Members"
+  },
+  "invite_members_7a6e02a": {
+    "message": "invite members"
+  },
+  "invited_users_899f75c9": {
+    "message": "Invited Users"
+  },
+  "is_this_information_incorrect_fdd3e4b1": {
+    "message": "is this information incorrect?"
+  },
+  "just_now_6a2722dc": {
+    "message": "Just now"
+  },
+  "learn_faster_do_more_and_connect_with_anyone_at_yo_86cd9cd9": {
+    "message": "Learn faster, do more, and connect with anyone at your institution"
+  },
+  "leave_a_comment_56fac938": {
+    "message": "Leave a comment..."
+  },
+  "like_e8ad74ae": {
+    "message": "like"
+  },
+  "likes_8cffe724": {
+    "message": "likes"
+  },
+  "log_in_5c66644d": {
+    "message": "Log In"
+  },
+  "login_with_uni_5668863": {
+    "message": "Login with Uni"
+  },
+  "looks_like_you_re_not_part_of_any_groups_or_classe_dda5af32": {
+    "message": "Looks like you’re not part of any groups or classes"
+  },
+  "members_af25c21d": {
+    "message": "Members"
+  },
+  "minutesdiff_minstring_ago_f27aacf1": {
+    "message": "{ minutesDiff } { minString } ago"
+  },
+  "modifiers_fb20befa": {
+    "message": "Modifiers"
+  },
+  "more_cf9cc661": {
+    "message": "More"
+  },
+  "name_name_5e68a905": {
+    "message": "Name: { name }"
+  },
+  "name_your_group_c03c0ec7": {
+    "message": "Name your group"
+  },
+  "new_chat_f525c39e": {
+    "message": "New Chat"
+  },
+  "no_chats_found_662e6fe3": {
+    "message": "No chats found"
+  },
+  "no_e16d9132": {
+    "message": "No"
+  },
+  "no_events_planned_for_today_25269813": {
+    "message": "No events planned for today"
+  },
+  "no_likes_ea1cb073": {
+    "message": "No likes"
+  },
+  "no_notes_or_files_found_1dc8af41": {
+    "message": "No notes or files found...!"
+  },
+  "no_one_on_the_network_can_freely_discover_or_reque_76ff19ad": {
+    "message": "No one on the network can freely discover or request to join this group, members may only join if invited first."
+  },
+  "no_posts_here_87cc1724": {
+    "message": "No Posts here!"
+  },
+  "no_results_f36777ee": {
+    "message": "No results"
+  },
+  "no_spaces_found_47637376": {
+    "message": "No Spaces found"
+  },
+  "note_2b416137": {
+    "message": "note"
+  },
+  "notebooks_94cd0b58": {
+    "message": "Notebooks"
+  },
+  "notes_5ef20d1": {
+    "message": "notes"
+  },
+  "nothing_was_found_for_your_search_b2797c08": {
+    "message": "Nothing was found for your search..."
+  },
+  "onlytime_73f1adcf": {
+    "message": "{ onlyTime }"
+  },
+  "open_e0beb7b9": {
+    "message": "Open"
+  },
+  "people_b347b40a": {
+    "message": "people"
+  },
+  "person_af8d0f5a": {
+    "message": "person"
+  },
+  "pinned_79da3efd": {
+    "message": "Pinned"
+  },
+  "poll_aa131fc6": {
+    "message": "Poll..."
+  },
+  "poll_option_key_ed19ffa4": {
+    "message": "Poll Option { key }"
+  },
+  "post_options_e1e5984d": {
+    "message": "Post Options"
+  },
+  "privacy_e6bc3076": {
+    "message": "privacy"
+  },
+  "private_3883d133": {
+    "message": "Private"
+  },
+  "public_a749f507": {
+    "message": "Public"
+  },
+  "recent_f19e8c64": {
+    "message": "Recent"
+  },
+  "remove_cover_photo_99ebd639": {
+    "message": "Remove cover Photo"
+  },
+  "remove_poll_5fc0971b": {
+    "message": "Remove Poll..."
+  },
+  "report_post_7cacfe99": {
+    "message": "Report post"
+  },
+  "say_hi_bbeee89d": {
+    "message": "Say Hi!"
+  },
+  "search_280d00bd": {
+    "message": "Search"
+  },
+  "search_2fa1058b": {
+    "message": "search"
+  },
+  "search_ambi_8f64ad56": {
+    "message": "Search ambi"
+  },
+  "search_chats_55dc0bab": {
+    "message": "Search chats"
+  },
+  "search_for_someone_225659c9": {
+    "message": "Search for someone"
+  },
+  "search_for_users_67f71e98": {
+    "message": "Search for users"
+  },
+  "search_notebooks_bef29d1e": {
+    "message": "Search notebooks"
+  },
+  "search_spaces_b5136c72": {
+    "message": "Search spaces"
+  },
+  "seconds_aee2098": {
+    "message": "seconds"
+  },
+  "secret_c05f33ff": {
+    "message": "Secret"
+  },
+  "select_your_network_below_ffb77c4e": {
+    "message": "Select your Network below"
+  },
+  "send_438fa1ee": {
+    "message": "send"
+  },
+  "sending_bf324366": {
+    "message": "Sending..."
+  },
+  "share_something_with_your_followers_5b2ce7ef": {
+    "message": "Share something with your followers"
+  },
+  "spaces_41d6bf62": {
+    "message": "Spaces"
+  },
+  "start_a_conversation_396a04cb": {
+    "message": "start a conversation"
+  },
+  "start_chat_26347b5a": {
+    "message": "Start Chat"
+  },
+  "start_searching_for_someone_to_start_a_chat_with_a_36c6d4c3": {
+    "message": "Start searching for someone to start a chat with above"
+  },
+  "status_c34bfc47": {
+    "message": "{ status }"
+  },
+  "student_921b864d": {
+    "message": "student"
+  },
+  "tag_someone_f74ddc92": {
+    "message": "Tag Someone"
+  },
+  "this_poll_is_closed_bc6259f": {
+    "message": "this poll is closed"
+  },
+  "this_poll_is_disabled_53fbc2bb": {
+    "message": "this poll is disabled"
+  },
+  "today_76e10f9c": {
+    "message": "Today"
+  },
+  "type_a_message_f1d70d4f": {
+    "message": "Type a message..."
+  },
+  "type_something_70127abf": {
+    "message": "Type something..."
+  },
+  "unable_to_download_file_5c78e884": {
+    "message": "Unable to download file"
+  },
+  "unable_to_load_chat_3cd32700": {
+    "message": "Unable to Load Chat"
+  },
+  "unable_to_preview_file_3e163934": {
+    "message": "Unable to preview file"
+  },
+  "unable_to_send_message_please_try_again_efc198d0": {
+    "message": "Unable to send message. Please try again"
+  },
+  "upload_new_photo_99675c99": {
+    "message": "Upload new photo"
+  },
+  "uploaded_285a2bfb": {
+    "message": "Uploaded"
+  },
+  "uploaded_d_date_at_d_time_39d35ca5": {
+    "message": "Uploaded { d, date } at { d, time }"
+  },
+  "uploading_profile_pic_57b990f8": {
+    "message": "uploading profile pic..."
+  },
+  "users_d1b60cb0": {
+    "message": "Users"
+  },
+  "view_profile_a4326a0c": {
+    "message": "View Profile"
+  },
+  "weekday_284068a6": {
+    "message": "{ weekDay }"
+  },
+  "what_s_on_your_mind_5cda9992": {
+    "message": "What''s on your mind?"
+  },
+  "you_1e52ca6a": {
+    "message": "You"
+  },
+  "your_university_email_address_731c86e7": {
+    "message": "Your University Email Address"
+  }
+}

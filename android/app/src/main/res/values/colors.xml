@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">@color/ambiBlue</color>
+    <color name="primaryLightColor">#63cfff</color>
+    <color name="primaryDarkColor">#0070b0</color>
+    <color name="secondaryColor">@color/razzmatazz</color>
+    <color name="secondaryLightColor">#ff62a9</color>
+    <color name="secondaryDarkColor">#b5004e</color>
+    <color name="primaryTextColor">#fafafa</color>
+    <color name="secondaryTextColor">#fafafa</color>
+    <color name="activityBackground">@color/secondaryDefault</color>
+
+    <color name="darkSplashBackground">#1e1e1e</color>
+    <color name="ambiBlue">#FF029EE2</color>
+    <color name="slateGray">#FF707689</color>
+    <color name="disabledGray">#FFCED1D9</color>
+    <color name="razzmatazz">#FFED1E7A</color>
+    <color name="darkJungleGreen">#FF1D2129</color>
+    <color name="warning">#FFE9A820</color>
+    <color name="lightSkyBlue">#FF7FD2F7</color>
+    <color name="lighterBorderGray">#FFE6EAF2</color>
+    <color name="destructiveAction">#FFBA0101</color>
+    <color name="secondaryDefault">#FFF7F7FA</color>
+    <color name="focusMode">#FF8B51F6</color>
+    <color name="onlineGreen">#FF2AB27A</color>
+    <color name="positiveAction">#FF22A671</color>
+    <color name="charcoal">#FF2F3746</color>
+
+    <color name="lightElementBG">#f8f8fb</color>
+    <color name="darkElementBG">#1a1a1a</color>
+</resources>

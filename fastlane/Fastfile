@@ -1,0 +1,239 @@
+fastlane_require 'dotenv'
+fastlane_require 'json'
+release_notes_command = "git log HEAD --pretty=format:\"%s\" -1"
+
+before_all do |lane, options|
+  update_fastlane
+  Dotenv.load(".env.#{ENV['ENV']}.secret")
+end
+
+# Version management
+lane :set_build_numbers_to_current_timestamp do |options|
+  incremented_build_number = Time.now.to_i.to_s
+  sh "bitrise envman add --key APP_BUILD_NUMBER --value #{incremented_build_number}"
+  UI.message "Set build number to #{incremented_build_number}"
+  increment_version_code(
+    gradle_file_path: "./android/app/build.gradle",
+    version_code: incremented_build_number
+  )
+end
+
+lane :check_appstore_version do |options|
+  app_store_build_number(
+    app_identifier: "next.school.ambi"
+    # username: "conner@ambi.work"
+  )
+  increment_version_number(
+    version_number: "#{lane_context[SharedValues::LATEST_VERSION]}",
+    xcodeproj: "./ios/AmbiNext.xcodeproj"
+  )
+  UI.message "Latest iOS version is #{lane_context[SharedValues::LATEST_VERSION]}"
+  increment_version_number(
+    bump_type: "patch",
+    xcodeproj: "./ios/AmbiNext.xcodeproj"
+  )
+  new_version = lane_context[SharedValues::VERSION_NUMBER]
+  UI.message "Bumped app version is #{new_version}"
+  yarn(
+    command: 'version',
+    options: "--new-version #{new_version}"
+  )
+  sh "bitrise envman add --key APP_VERSION --value #{new_version}"
+end
+
+platform :ios do
+  lane :restore_files do |options|
+    plist_path = "ios/AmbiNext/Info.plist"
+    if File.exist?("../#{plist_path}.back")
+      restore_file(path: plist_path)
+    end
+    plist_appext_path = "ios/RichChatNotification/Info.plist"
+    if File.exist?("../#{plist_path}.back")
+      restore_file(path: plist_path)
+    end
+    pbxproj_path="ios/AmbiNext.xcodeproj/project.pbxproj"
+    if File.exist?("../#{pbxproj_path}.back")
+      restore_file(path: pbxproj_path)
+    end
+  end
+
+  error do |lane, exception, options|
+    restore_files
+  end
+
+  lane :setup do |options|
+    produce(
+      app_name: 'Ambi Mobile',
+      skip_itc: true
+    )
+    match(
+      type: 'development',
+      shallow_clone: true,
+      clone_branch_directly: true,
+      force_for_new_devices: true
+    )
+    match(
+      shallow_clone: true,
+      clone_branch_directly: true,
+      force_for_new_devices: true
+    )
+  end
+
+  lane :build do |options|
+    plist_full_path = "ios/AmbiNext/Info.plist"
+    backup_file(path: plist_full_path)
+
+    plist_extension_full_path = "ios/RichChatNotification/Info.plist"
+    backup_file(path: plist_extension_full_path)
+
+    xcodeproj = "ios/AmbiNext.xcodeproj"
+    xcworkspace = "ios/AmbiNext.xcworkspace"
+    pbxproj_full_path="#{xcodeproj}/project.pbxproj"
+    backup_file(path: pbxproj_full_path)
+
+    update_info_plist(
+      xcodeproj: xcodeproj,
+      plist_path: 'AmbiNext/Info.plist',
+      block: lambda { |plist|
+        # plist['CFBundleName'] = 'Ambi Mobile'
+        # plist['CFBundleDisplayName'] = 'Ambi Mobile'
+        # plist['CFBundleShortVersionString'] = '1.5.23'
+        plist['CFBundleVersion'] = ENV['IOS_VERSION_BUILD_NUMBER']
+      },
+    )
+    update_info_plist(
+      xcodeproj: xcodeproj,
+      plist_path: 'RichChatNotification/Info.plist',
+      block: lambda { |plist|
+        # plist['CFBundleName'] = 'RichChatNotification'
+        # plist['CFBundleDisplayName'] = 'RichChatNotification'
+        # plist['CFBundleShortVersionString'] = '1.5.23'
+        plist['CFBundleVersion'] = ENV['IOS_VERSION_BUILD_NUMBER']
+      },
+    )
+
+    update_app_identifier(
+      xcodeproj: xcodeproj,
+      plist_path: 'AmbiNext/Info.plist',
+      app_identifier: 'next.school.ambi'
+    )
+    update_app_identifier(
+      xcodeproj: xcodeproj,
+      plist_path: 'RichChatNotification/Info.plist',
+      app_identifier: 'next.school.ambi.RichChatNotification'
+    )
+
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      path: "ios/AmbiNext.xcodeproj",
+      code_sign_identity: 'Apple Distribution',
+      bundle_identifier: 'next.school.ambi',
+      targets: "AmbiNext"
+    )
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      path: "ios/AmbiNext.xcodeproj",
+      code_sign_identity: 'Apple Distribution',
+      bundle_identifier: 'next.school.ambi.RichChatNotification',
+      targets: "RichChatNotification"
+    )
+
+    match(
+      type: 'appstore',
+      app_identifier: ['next.school.ambi', 'next.school.ambi.RichChatNotification'],
+      readonly: true
+    )
+    gymOptions = ({
+      silent: false,
+      clean: true,
+      scheme: "AmbiNext",
+      export_method: 'app-store'
+    }).merge(
+      File.directory?("../#{xcworkspace}") ?
+        {workspace: xcworkspace} :
+        {project: xcodeproj}
+    )
+    gym(gymOptions)
+    update_code_signing_settings(
+      use_automatic_signing: true,
+      path: "ios/AmbiNext.xcodeproj"
+    )
+    restore_files
+  end
+
+  lane :deploy do |options|
+    match(
+      shallow_clone: true,
+      clone_branch_directly: true,
+      readonly: true
+    )
+    # check_appstore_version
+    # set_build_numbers_to_current_timestamp
+    build
+    git_branch
+    current_branch = lane_context[SharedValues::GIT_BRANCH_ENV_VARS] === 'qa-environment' ? 'QA' : 'Production'
+    UI.message "Current branch is #{current_branch}"
+    pilot(
+      app_identifier: 'next.school.ambi',
+      ipa: "Ambi Mobile.ipa",
+      changelog: "This is a build pointing to the #{current_branch} environment",
+      skip_waiting_for_build_processing: true
+    )
+  end
+
+  lane :get_certificates_and_profiles do |options|
+    match(
+      type: 'development',
+      shallow_clone: true,
+      clone_branch_directly: true,
+      readonly: true
+    )
+    match(
+      shallow_clone: true,
+      clone_branch_directly: true,
+      readonly: true
+    )
+  end
+
+  lane :generate_manual_certificates do |options|
+    match(
+      type: 'development',
+      shallow_clone: true,
+      clone_branch_directly: true,
+      app_identifier: ['next.school.ambi', 'next.school.ambi.RichChatNotification']
+    )
+    match(
+      type: 'appstore',
+      shallow_clone: true,
+      clone_branch_directly: true,
+      app_identifier: ['next.school.ambi', 'next.school.ambi.RichChatNotification']
+    )
+  end
+end
+
+platform :android do
+  lane :build do |options|
+    gradle(
+      task: "assembleRelease",
+      project_dir: 'android'
+    )
+  end
+
+  lane :deploy do |options|
+    # check_appstore_version
+    set_build_numbers_to_current_timestamp
+    build
+    gradle(
+      task: "bundle",
+      project_dir: 'android',
+      build_type: "Release"
+    )
+    supply(
+      package_name: 'next.school.ambi',
+      track: 'internal',
+      aab: 'android/app/build/outputs/bundle/release/app-release.aab',
+      json_key: './google-play-service-account.json',
+      skip_upload_apk: true
+    )
+  end
+end
