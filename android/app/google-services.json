@@ -15,7 +15,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "434358097453-ibl23l7hj2j9g2alqg39rbut7ope2pbb.apps.googleusercontent.com",
+          "client_id": "xxxxxxxxx-ibl23l7hj2j9g2alqg39rbut7ope2pbb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "next.school.ambi",
@@ -23,24 +23,24 @@
           }
         },
         {
-          "client_id": "434358097453-nsj6emu5bl8tgt4ulgbo9ipk7l1nstik.apps.googleusercontent.com",
+          "client_id": "xxxxxxxxxxx-nsj6emu5bl8tgt4ulgbo9ipk7l1nstik.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyABALNTgkF7tN2pHhi2Rtd4EWJY9br6PLA"
+          "current_key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "434358097453-a9eueemmepjeeqgmgb03u70p6m9vmuka.apps.googleusercontent.com",
+              "client_id": "xxxxxxxxxxx-a9eueemmepjeeqgmgb03u70p6m9vmuka.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "434358097453-n4lle6h7kt1togaqu6fonds0rtm8vrg1.apps.googleusercontent.com",
+              "client_id": "xxxxxxxxxxx-n4lle6h7kt1togaqu6fonds0rtm8vrg1.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "next.school.ambi",

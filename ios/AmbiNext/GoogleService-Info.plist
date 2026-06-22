@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>434358097453-n4lle6h7kt1togaqu6fonds0rtm8vrg1.apps.googleusercontent.com</string>
+	<string>XXXXXXXXXXXX-n4lle6h7kt1togaqu6fonds0rtm8vrg1.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
 	<string>com.googleusercontent.apps.434358097453-n4lle6h7kt1togaqu6fonds0rtm8vrg1</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>434358097453-ibl23l7hj2j9g2alqg39rbut7ope2pbb.apps.googleusercontent.com</string>
+	<string>XXXXXXXXXXX-ibl23l7hj2j9g2alqg39rbut7ope2pbb.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAnx9DuIPPWg_Ncx4RwgRqCgdLPG01VeYE</string>
+	<string>xxxxxxxxxxxxxxxxxxxxxxxxxx</string>
 	<key>GCM_SENDER_ID</key>
-	<string>434358097453</string>
+	<string>4343XXXXXXX</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>next.school.ambi</string>
 	<key>PROJECT_ID</key>
-	<string>ambi-192509</string>
+	<string>ambi-XXXXX</string>
 	<key>STORAGE_BUCKET</key>
-	<string>ambi-192509.appspot.com</string>
+	<string>ambi-XXXXXX.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,8 +31,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:434358097453:ios:1f7066a40bcb415acc8aa4</string>
+	<string>1:xxxxxxxxx:ios:1f7066a40bcb415acc8aa4</string>
 	<key>DATABASE_URL</key>
-	<string>https://ambi-192509.firebaseio.com</string>
+	<string>https://ambi-XXXXXX.firebaseio.com</string>
 </dict>
 </plist>
