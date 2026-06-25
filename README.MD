@@ -1,6 +1,6 @@
 <p align="center">
 <a href="https://github.com/ShotSkydiver/Ambi-Mobile">
-<img src="https://github.com/ShotSkydiver/Ambi-Mobile/raw/master/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" height="150">
+<img src="https://github.com/ShotSkydiver/Ambi-Mobile/raw/main/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" height="150">
 </a>
 </p>
 
