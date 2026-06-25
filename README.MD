@@ -8,9 +8,12 @@
 
 # Ambi Mobile
 
-[![iOS App Store Release](https://badgen.net/badge/apple/app%20store/ED1E7A?icon=apple&label=ios)](https://apps.apple.com/us/app/ambi/id1464161949?mt=8)
-[![Google Play Store Release](https://badgen.net/badge/googleplay/google%20play/8b51f6?icon=googleplay&label=android)](https://play.google.com/store/apps/details?id=next.school.ambi&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
+[![iOS App Store Release](https://badgen.net/badge/apple/app%20store/ED1E7A?icon=apple&label=ios)](https://iphone.apkpure.com/app/ambi/next.school.ambi)
+[![Google Play Store Release](https://badgen.net/badge/googleplay/google%20play/8b51f6?icon=googleplay&label=android)](https://apkpure.com/ambi/next.school.ambi)
 
 </span>
 
 Ambi was a first of its kind Learner Social Network that helped every student stay more engaged, involved, and productive.
+
+This is archive of the mobile app codebase, which I was the lead (and at times, sole) developer on. I managed the codebase, wrote the deploy scripts, created the marketing screenshots, ran the Android & iOS developer accounts, and created the App Store releases.
+
