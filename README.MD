@@ -19,8 +19,8 @@ This is archive of the mobile app codebase, which I was the lead (and at times, 
 
 ## Screenshots
 
-<img src="https://github.com/ShotSkydiver/Ambi-Mobile/raw/main/screenshots/ios-appstore-screen-0.png" width="33%">
+<img src="https://github.com/ShotSkydiver/Ambi-Mobile/raw/main/screenshots/ios-appstore-screen-0.png" width="33%" height="33%">
 
-<img src="https://github.com/ShotSkydiver/Ambi-Mobile/raw/main/screenshots/ios-appstore-screen-1.png" width="33%">
+<img src="https://github.com/ShotSkydiver/Ambi-Mobile/raw/main/screenshots/ios-appstore-screen-1.png" width="33%" height="33%">
 
-<img src="https://github.com/ShotSkydiver/Ambi-Mobile/raw/main/screenshots/ios-appstore-screen-2.png" width="33%">
+<img src="https://github.com/ShotSkydiver/Ambi-Mobile/raw/main/screenshots/ios-appstore-screen-2.png" width="33%" height="33%">
